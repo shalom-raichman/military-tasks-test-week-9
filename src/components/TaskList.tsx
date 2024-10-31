@@ -1,6 +1,14 @@
+import TaskModel from '../models/Task'
+import { Task } from './Task'
 
-export const TaskList = () => {
+interface Props {
+  tasks: TaskModel[]
+}
+
+export const TaskList = ({ tasks }: Props) => {
   return (
-    <div>TaskList</div>
+    <div className='task-list'>
+      {tasks.map(t => <Task task={t} key={t.id}/>)}
+    </div>
   )
 }
