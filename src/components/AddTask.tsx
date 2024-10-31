@@ -3,10 +3,14 @@ import Task from '../models/Task'
 import { StatusEnum } from '../models/StatusEnum'
 import { PriorityEnum } from '../models/PriorityEnum'
 
+interface Props {
+  setRender: (x: number) => void
+}
+
 const API_KEY = '9031537'
 const BASE_URL = `https://reactexambackend.onrender.com/missions/${API_KEY}`
 
-export const AddTask = () => {
+export const AddTask = ({ setRender }: Props) => {
   const [task, setTask] = useState<Task>()
   const [name, setName] = useState<string>('')
   const [status, setStatus] = useState<StatusEnum>(StatusEnum.Pending)
@@ -31,7 +35,7 @@ export const AddTask = () => {
           headers: { 'Content-Type': 'application/json' }
         })
         const taskDits = await res.json()
-        console.log(taskDits)
+        setRender(Math.random())
       } catch (err) {
         alert((err as Error).message)
         console.log(err)

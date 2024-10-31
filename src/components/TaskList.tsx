@@ -3,12 +3,15 @@ import { Task } from './Task'
 
 interface Props {
   tasks: TaskModel[]
+  setRender: (x: number) => void
 }
 
-export const TaskList = ({ tasks }: Props) => {
+
+export const TaskList = ({ tasks, setRender }: Props) => {
   return (
     <div className='task-list'>
-      {tasks.map(t => <Task task={t} key={t.id}/>)}
+      <h1>Mission</h1>
+      {tasks.map(t => <Task task={t} key={t._id} setRender={setRender} />)}
     </div>
   )
 }

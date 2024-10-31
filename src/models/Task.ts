@@ -1,7 +1,7 @@
 import { StatusEnum } from './StatusEnum'
 
 export default interface Task {
-  id?: string
+  _id?: string
   name: string
   status: StatusEnum
   priority: string

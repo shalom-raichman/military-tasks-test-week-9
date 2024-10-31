@@ -8,6 +8,7 @@ const BASE_URL = `https://reactexambackend.onrender.com/missions/${API_KEY}`
 
 export const Main = () => {
   const [tasks, setTasks] = useState<Task[]>([])
+  const [render, setRender] = useState(1)
   useEffect(() => {
     (async () => {
       try {
@@ -17,15 +18,15 @@ export const Main = () => {
         console.log(tasksRrs)
       } catch (err) {
         console.log(err)
-        alert((err as Error).message)
+        // alert((err as Error).message)
       }
     })()
-  }, [])
+  }, [render])
 
   return (
     <div className='main'>
-      <AddTask />
-      <TaskList tasks={tasks}/>
+      <AddTask setRender={setRender} />
+      <TaskList tasks={tasks} setRender={setRender} />
     </div>
   )
 }
