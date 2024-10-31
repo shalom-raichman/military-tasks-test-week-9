@@ -7,13 +7,14 @@ const API_KEY = '9031537'
 const BASE_URL = `https://reactexambackend.onrender.com/missions/${API_KEY}`
 
 export const Main = () => {
-  const [tasks, setTasks] = useState<Task[]>()
+  const [tasks, setTasks] = useState<Task[]>([])
   useEffect(() => {
     (async () => {
       try {
         const res = await fetch(BASE_URL)
-        setTasks(await res.json())
-        console.log(tasks)
+        const tasksRrs = await res.json()
+        setTasks(tasksRrs)
+        console.log(tasksRrs)
       } catch (err) {
         console.log(err)
         alert((err as Error).message)
@@ -24,7 +25,7 @@ export const Main = () => {
   return (
     <div className='main'>
       <AddTask />
-      <TaskList />
+      <TaskList tasks={tasks}/>
     </div>
   )
 }
